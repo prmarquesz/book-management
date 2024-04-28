@@ -81,7 +81,6 @@
             <artifactId>pitest</artifactId>
             <version>1.16.0</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin -->
         <dependency>
             <groupId>org.pitest</groupId>
@@ -96,6 +95,15 @@
             <artifactId>mapstruct</artifactId>
             <version>1.5.5.Final</version>
         </dependency>
+
+        <!--        Docs        -->
+        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
 
     </dependencies>
     <dependencyManagement>

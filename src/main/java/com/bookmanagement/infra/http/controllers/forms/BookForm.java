@@ -1,4 +1,4 @@
-package com.bookmanagement.infra.http.controller.form;
+package com.bookmanagement.infra.http.controllers.forms;
 
 import com.bookmanagement.application.usecase.iodata.BookInputData;
 import jakarta.validation.constraints.NotBlank;

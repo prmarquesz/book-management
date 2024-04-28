@@ -1,4 +1,4 @@
-package com.bookmanagement.infra.persistence.storage;
+package com.bookmanagement.infra.persistence.repositories;
 
 import com.bookmanagement.infra.persistence.entity.BookEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

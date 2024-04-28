@@ -1,4 +1,4 @@
-package com.bookmanagement.infra.http.controller;
+package com.bookmanagement.infra.http.controllers;
 
 import com.bookmanagement.application.storage.BookStorage;
 import org.junit.jupiter.api.Test;

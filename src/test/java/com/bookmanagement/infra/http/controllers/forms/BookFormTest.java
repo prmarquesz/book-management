@@ -1,4 +1,4 @@
-package com.bookmanagement.infra.http.controller.form;
+package com.bookmanagement.infra.http.controllers.forms;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

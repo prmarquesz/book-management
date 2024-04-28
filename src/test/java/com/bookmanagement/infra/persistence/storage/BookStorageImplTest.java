@@ -2,6 +2,7 @@ package com.bookmanagement.infra.persistence.storage;
 
 import com.bookmanagement.application.storage.BookStorage;
 import com.bookmanagement.core.entity.Book;
+import com.bookmanagement.infra.persistence.repositories.BookRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

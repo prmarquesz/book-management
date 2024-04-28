@@ -1,10 +1,10 @@
-package com.bookmanagement.infra.http.controller;
+package com.bookmanagement.infra.http.controllers;
 
 import com.bookmanagement.application.storage.BookStorage;
 import com.bookmanagement.application.usecase.BookUseCase;
 import com.bookmanagement.application.usecase.BookUseCaseImpl;
 import com.bookmanagement.application.usecase.iodata.BookOutputData;
-import com.bookmanagement.infra.http.controller.form.BookForm;
+import com.bookmanagement.infra.http.controllers.forms.BookForm;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;

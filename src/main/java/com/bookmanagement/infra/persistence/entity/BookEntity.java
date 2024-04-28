@@ -1,33 +1,66 @@
 package com.bookmanagement.infra.persistence.entity;
 
-import com.bookmanagement.core.entity.Book;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
-public class BookEntity extends Book {
+@Table(name = "books")
+@Entity(name = "Book")
+public class BookEntity {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long identifier;
+    private Long id;
+    private String title;
+    private String author;
+    private String isbn;
+    private Integer quantity;
 
-    public Long getIdentifier() {
-        return identifier;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdentifier(Long identifier) {
-        this.identifier = identifier;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "Book{" +
-                "\"id\": " + identifier +
-                ", \"title\": \"" + getTitle() + '\"' +
-                ", \"author\": \"" + getAuthor() + '\"' +
-                ", \"isbn\": \"" + getIsbn() + '\"' +
-                ", \"quantity\": " + getQuantity() +
+        return "BookEntity{" +
+                "\"id\": " + id +
+                ", \"title\": \"" + title + '\"' +
+                ", \"author\": \"" + author + '\"' +
+                ", \"isbn\": \"" + isbn + '\"' +
+                ", \"quantity\": " + quantity +
                 '}';
     }
 }

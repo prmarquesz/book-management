@@ -8,14 +8,14 @@ class BookEntityTest {
     @Test
     void testToString() {
         BookEntity bookEntity = new BookEntity();
-        bookEntity.setIdentifier(1L);
+        bookEntity.setId(1L);
         bookEntity.setTitle("title");
         bookEntity.setAuthor("author");
         bookEntity.setIsbn("9780132350884");
         bookEntity.setQuantity(1);
 
         Assertions.assertEquals(
-                "Book{" +
+                "BookEntity{" +
                         "\"id\": 1," +
                         " \"title\": \"title\"," +
                         " \"author\": \"author\", " +

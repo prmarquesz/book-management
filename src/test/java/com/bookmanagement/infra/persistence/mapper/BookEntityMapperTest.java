@@ -47,7 +47,7 @@ class BookEntityMapperTest {
     void shouldMapCorrectlyToDomain() {
         // Arrange
         var bookEntity = new BookEntity();
-        bookEntity.setIdentifier(1L);
+        bookEntity.setId(1L);
         bookEntity.setTitle("Clean Code");
         bookEntity.setAuthor("Robert C. Martin");
         bookEntity.setIsbn("9780132350884");
@@ -58,7 +58,7 @@ class BookEntityMapperTest {
 
         // Assert
         Assertions.assertNotNull(book);
-        Assertions.assertEquals(bookEntity.getIdentifier(), book.getId(), "IDs do not match");
+        Assertions.assertEquals(bookEntity.getId(), book.getId(), "IDs do not match");
         Assertions.assertEquals(bookEntity.getTitle(), book.getTitle(), "Titles do not match");
         Assertions.assertEquals(bookEntity.getAuthor(), book.getAuthor(), "Authors do not match");
         Assertions.assertEquals(bookEntity.getIsbn(), book.getIsbn(), "ISBNs do not match");

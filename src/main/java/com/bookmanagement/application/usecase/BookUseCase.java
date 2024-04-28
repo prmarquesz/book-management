@@ -5,4 +5,6 @@ import com.bookmanagement.application.usecase.iodata.BookOutputData;
 
 public interface BookUseCase {
     BookOutputData addBook(BookInputData bookInputData);
+
+    BookOutputData getBook(Long id);
 }

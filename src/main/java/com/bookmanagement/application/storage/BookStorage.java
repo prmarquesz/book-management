@@ -4,4 +4,6 @@ import com.bookmanagement.core.entity.Book;
 
 public interface BookStorage {
     Book save(Book book);
+
+    Book findById(Long id);
 }

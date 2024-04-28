@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
@@ -32,9 +33,7 @@ public class BookController {
     @PostMapping
     @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Object> addBook(
-            @RequestBody
-            @Valid
-            BookForm form, UriComponentsBuilder uriBuilder) {
+            @RequestBody @Valid BookForm form, UriComponentsBuilder uriBuilder) {
         LOGGER.info("[BookController] [addBook] Received book ->  {} request", form);
         try {
             BookOutputData bookOutputData = bookUseCase.addBook(form);
@@ -43,8 +42,18 @@ public class BookController {
             return ResponseEntity.created(uri).body(bookOutputData);
         } catch (Exception e) {
             LOGGER.error("[BookController] [addBook] Error adding book -> {}", form, e);
-            HttpStatus status = e instanceof IllegalArgumentException || e instanceof NullPointerException ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR;
+            HttpStatus status = e.getCause() instanceof IllegalArgumentException || e instanceof NullPointerException ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR;
             return ResponseEntity.status(status).body(Collections.singletonMap("error", e.getMessage()));
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getBook(@PathVariable Long id) {
+        LOGGER.info("[BookController] [getBook] Received book id ->  {} request", id);
+        Optional<BookOutputData> bookOutputData = Optional.ofNullable(bookUseCase.getBook(id));
+        if (bookOutputData.isPresent()) {
+            return ResponseEntity.ok(bookOutputData);
+        }
+        return ResponseEntity.notFound().build();
     }
 }

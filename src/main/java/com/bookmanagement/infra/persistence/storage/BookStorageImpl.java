@@ -4,10 +4,13 @@ import com.bookmanagement.application.storage.BookStorage;
 import com.bookmanagement.core.entity.Book;
 import com.bookmanagement.infra.persistence.entity.BookEntity;
 import com.bookmanagement.infra.persistence.mapper.BookEntityMapper;
+import com.bookmanagement.infra.persistence.repositories.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class BookStorageImpl implements BookStorage {
@@ -26,5 +29,12 @@ public class BookStorageImpl implements BookStorage {
         BookEntity bookEntity = bookRepository.save(bookEntityMapper.toEntity(book));
         LOGGER.info("[BookStorageImpl] [save] Saved book -> {}", bookEntity);
         return bookEntityMapper.toDomain(bookEntity);
+    }
+
+    @Override
+    public Book findById(Long id) {
+        LOGGER.info("[BookStorageImpl] [findById] Finding book by id -> {}", id);
+        Optional<BookEntity> bookEntity = bookRepository.findById(id);
+        return bookEntity.map(bookEntityMapper::toDomain).orElse(null);
     }
 }

@@ -33,4 +33,11 @@ public class BookUseCaseImpl implements BookUseCase {
         Book book = bookStorage.save(bookMapper.mapToEntity(bookInputData));
         return bookMapper.mapToOutputData(book);
     }
+
+    @Override
+    public BookOutputData getBook(Long id) {
+        LOGGER.info("[BookUseCaseImpl] [getBook] Retrieving the book with id -> {} from storage", id);
+        Book book = bookStorage.findById(id);
+        return bookMapper.mapToOutputData(book);
+    }
 }

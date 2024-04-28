@@ -7,6 +7,7 @@ import com.bookmanagement.application.usecase.iodata.BookOutputData;
 import com.bookmanagement.core.entity.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 
 import java.util.Objects;
 
@@ -20,9 +21,14 @@ public class BookUseCaseImpl implements BookUseCase {
         this.bookMapper = bookMapper;
     }
 
+    public BookUseCaseImpl(BookStorage bookStorage) {
+        this.bookStorage = bookStorage;
+        this.bookMapper = BookMapper.INSTANCE;
+    }
+
     @Override
-    public BookOutputData addBook(BookInputData bookInputData) {
-        LOGGER.info("[BookUseCaseImpl] [addBook] Adding the book -> ({}) to storage", bookInputData);
+    public BookOutputData addBook(BookInputData bookInputData) throws NullPointerException, IllegalArgumentException, DataAccessException {
+        LOGGER.info("[BookUseCaseImpl] [addBook] Adding the book -> {} to storage", bookInputData);
         Objects.requireNonNull(bookInputData, "[BookUseCaseImpl] [addBook] Book input data cannot be null");
         Book book = bookStorage.save(bookMapper.mapToEntity(bookInputData));
         return bookMapper.mapToOutputData(book);

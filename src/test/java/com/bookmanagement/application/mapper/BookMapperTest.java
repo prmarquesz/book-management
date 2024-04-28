@@ -20,11 +20,7 @@ class BookMapperTest {
 
     @Test
     void shouldReturnNullWhenBookInputDataIsNull() {
-        // Act
-        var book = bookMapper.mapToEntity(null);
-
-        // Assert
-        Assertions.assertNull(book);
+        Assertions.assertNull(bookMapper.mapToEntity(null));
     }
 
     @Test
@@ -70,6 +66,7 @@ class BookMapperTest {
 
         // Assert
         Assertions.assertNotNull(bookOutputData);
+        Assertions.assertEquals(book.getId(), bookOutputData.getId(), "IDs do not match");
         Assertions.assertEquals(book.getTitle(), bookOutputData.getTitle(), "Titles do not match");
         Assertions.assertEquals(book.getAuthor(), bookOutputData.getAuthor(), "Authors do not match");
         Assertions.assertEquals(book.getIsbn(), bookOutputData.getInternationalStandardBookNumber(), "ISBNs do not match");

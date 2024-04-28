@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -36,6 +37,13 @@ public class BookStorageImpl implements BookStorage {
         LOGGER.info("[BookStorageImpl] [findById] Finding book by id -> {}", id);
         Optional<BookEntity> bookEntity = bookRepository.findById(id);
         return bookEntity.map(bookEntityMapper::toDomain).orElse(null);
+    }
+
+    @Override
+    public List<Book> findAll() {
+        LOGGER.info("[BookStorageImpl] [findAll] Finding all books");
+        List<BookEntity> bookEntities = bookRepository.findAll();
+        return bookEntities.stream().map(bookEntityMapper::toDomain).toList();
     }
 
     @Override

@@ -59,6 +59,12 @@ public class BookController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<Object> getBooks() {
+        LOGGER.info("[BookController] [getBooks] Received request to get all books");
+        return ResponseEntity.ok(bookUseCase.getBooks());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getBook(@PathVariable Long id) {
         LOGGER.info("[BookController] [getBook] Received book id ->  {} request", id);

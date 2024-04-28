@@ -4,11 +4,13 @@ import com.bookmanagement.application.mapper.BookMapper;
 import com.bookmanagement.application.storage.BookStorage;
 import com.bookmanagement.application.usecase.iodata.BookInputData;
 import com.bookmanagement.application.usecase.iodata.BookOutputData;
+import com.bookmanagement.application.usecase.iodata.BookOutputDataImpl;
 import com.bookmanagement.core.entity.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -40,6 +42,13 @@ public class BookUseCaseImpl implements BookUseCase {
         LOGGER.info("[BookUseCaseImpl] [getBook] Retrieving the book with id -> {} from storage", id);
         Book book = bookStorage.findById(id);
         return bookMapper.mapToOutputData(book);
+    }
+
+    @Override
+    public List<BookOutputDataImpl> getBooks() {
+        LOGGER.info("[BookUseCaseImpl] [getBooks] Retrieving all books from storage");
+        List<Book> books = bookStorage.findAll();
+        return books.stream().map(bookMapper::mapToOutputData).toList();
     }
 
     @Override

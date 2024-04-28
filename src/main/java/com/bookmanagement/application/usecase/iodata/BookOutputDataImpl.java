@@ -51,4 +51,15 @@ public class BookOutputDataImpl implements BookOutputData {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "BookOutputData{" +
+                "\"id\": " + id +
+                ", \"title\": \"" + title + '\"' +
+                ", \"author\": \"" + author + '\"' +
+                ", \"internationalStandardBookNumber\": \"" + internationalStandardBookNumber + '\"' +
+                ", \"quantity\": " + quantity +
+                '}';
+    }
 }

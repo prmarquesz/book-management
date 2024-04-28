@@ -6,4 +6,5 @@ public interface BookOutputData {
     String getAuthor();
     String getInternationalStandardBookNumber();
     Integer getQuantity();
+    String toString();
 }

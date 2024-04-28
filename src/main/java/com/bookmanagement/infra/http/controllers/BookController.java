@@ -47,6 +47,18 @@ public class BookController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteBook(@PathVariable Long id) {
+        LOGGER.info("[BookController] [deleteBook] Received book id ->  {} request", id);
+        try {
+            bookUseCase.deleteBook(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            LOGGER.error("[BookController] [deleteBook] Error deleting book with id -> {}", id, e);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getBook(@PathVariable Long id) {
         LOGGER.info("[BookController] [getBook] Received book id ->  {} request", id);

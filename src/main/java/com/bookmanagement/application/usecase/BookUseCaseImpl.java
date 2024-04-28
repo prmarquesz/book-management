@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class BookUseCaseImpl implements BookUseCase {
     private static final Logger LOGGER = LoggerFactory.getLogger(BookUseCaseImpl.class);
@@ -39,5 +40,14 @@ public class BookUseCaseImpl implements BookUseCase {
         LOGGER.info("[BookUseCaseImpl] [getBook] Retrieving the book with id -> {} from storage", id);
         Book book = bookStorage.findById(id);
         return bookMapper.mapToOutputData(book);
+    }
+
+    @Override
+    public void deleteBook(Long id) {
+        LOGGER.info("[BookUseCaseImpl] [deleteBook] Deleting the book with id -> {} from storage", id);
+        Optional<Book> book = Optional.ofNullable(bookStorage.findById(id));
+        if (book.isEmpty())
+            throw new IllegalArgumentException("[BookUseCaseImpl] [deleteBook] Book with id -> " + id + " not found");
+        bookStorage.deleteById(id);
     }
 }

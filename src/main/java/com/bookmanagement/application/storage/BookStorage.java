@@ -6,4 +6,6 @@ public interface BookStorage {
     Book save(Book book);
 
     Book findById(Long id);
+
+    void deleteById(Long id);
 }

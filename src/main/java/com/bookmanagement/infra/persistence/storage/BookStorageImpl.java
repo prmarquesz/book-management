@@ -37,4 +37,10 @@ public class BookStorageImpl implements BookStorage {
         Optional<BookEntity> bookEntity = bookRepository.findById(id);
         return bookEntity.map(bookEntityMapper::toDomain).orElse(null);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        LOGGER.info("[BookStorageImpl] [deleteById] Deleting book by id -> {}", id);
+        bookRepository.deleteById(id);
+    }
 }

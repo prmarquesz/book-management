@@ -42,7 +42,7 @@ public class BookController {
             return ResponseEntity.created(uri).body(bookOutputData);
         } catch (Exception e) {
             LOGGER.error("[BookController] [addBook] Error adding book -> {}", form, e);
-            HttpStatus status = e.getCause() instanceof IllegalArgumentException || e instanceof NullPointerException ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR;
+            HttpStatus status = e instanceof IllegalArgumentException || e instanceof NullPointerException ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR;
             return ResponseEntity.status(status).body(Collections.singletonMap("error", e.getMessage()));
         }
     }

@@ -33,6 +33,12 @@ public class BookUseCaseImpl implements BookUseCase {
     public BookOutputData addBook(BookInputData bookInputData) throws NullPointerException, IllegalArgumentException, DataAccessException {
         LOGGER.info("[BookUseCaseImpl] [addBook] Adding the book -> {} to storage", bookInputData);
         Objects.requireNonNull(bookInputData, "[BookUseCaseImpl] [addBook] Book input data cannot be null");
+        bookStorage.findAll().stream()
+                .filter(book -> book.getTitle().equals(bookInputData.getTitle()) || book.getIsbn().equals(bookInputData.getInternationalStandardBookNumber()))
+                .findFirst()
+                .ifPresent(book -> {
+                    throw new IllegalArgumentException("[BookUseCaseImpl] [addBook] Book with same title or isbn already exists");
+                });
         Book book = bookStorage.save(bookMapper.mapToEntity(bookInputData));
         return bookMapper.mapToOutputData(book);
     }

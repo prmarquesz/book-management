@@ -30,7 +30,7 @@ A RESTful API using Java and Spring Boot for a simple book management system.
    If you have Maven installed, you can run the application using the following command:
 
     ```bash
-    spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.arguments=--JWT_SECRET=yourSecretKey
+    mvn spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.arguments=--JWT_SECRET=yourSecretKey
     ```
    Replace `yourSecretKey` with your actual secret key.
 

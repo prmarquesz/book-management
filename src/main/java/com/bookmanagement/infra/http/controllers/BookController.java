@@ -48,6 +48,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Object> deleteBook(@PathVariable Long id) {
         LOGGER.info("[BookController] [deleteBook] Received book id ->  {} request", id);
         try {
@@ -60,6 +61,7 @@ public class BookController {
     }
 
     @GetMapping
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Object> getBooks() {
         LOGGER.info("[BookController] [getBooks] Received request to get all books");
         return ResponseEntity.ok(bookUseCase.getBooks());

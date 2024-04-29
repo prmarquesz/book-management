@@ -41,7 +41,7 @@ The application uses H2 in-memory database for testing. The database is automati
 1. Run maven tests
 
 ```bash 
-mvn mvn test
+mvn test
 ```
 
 2. Run PITest
